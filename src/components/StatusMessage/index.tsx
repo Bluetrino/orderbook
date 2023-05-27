@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
+
 import { Container } from "./styles";
 
 interface StatusMessageProps {
@@ -6,10 +7,13 @@ interface StatusMessageProps {
   isFeedKilled: boolean;
 }
 
-const StatusMessage: FunctionComponent<StatusMessageProps> = ({selectedMarket = '', isFeedKilled}) => {
+const StatusMessage: FunctionComponent<StatusMessageProps> = ({
+  selectedMarket = "",
+  isFeedKilled,
+}) => {
   return (
     <Container>
-      {isFeedKilled ? 'Feed killed.' : `Selected market: ${selectedMarket}`}
+      {isFeedKilled ? "Feed killed." : `Selected market: ${selectedMarket}`}
     </Container>
   );
 };

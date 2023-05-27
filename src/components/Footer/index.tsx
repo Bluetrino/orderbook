@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
 
 import { Container } from "./styles";
 import Button from "../Button";
@@ -9,11 +9,25 @@ interface FooterProps {
   isFeedKilled: boolean;
 }
 
-const Footer: FunctionComponent<FooterProps> = ({ toggleFeedCallback, killFeedCallback , isFeedKilled}) => {
+const Footer: FunctionComponent<FooterProps> = ({
+  toggleFeedCallback,
+  killFeedCallback,
+  isFeedKilled,
+}) => {
   return (
     <Container>
-      {!isFeedKilled && <Button title={'Toggle Feed'} backgroundColor={'#5741d9'} callback={toggleFeedCallback}/>}
-      <Button title={isFeedKilled ? 'Renew feed' : 'Kill Feed'} backgroundColor={'#b91d1d'} callback={killFeedCallback}/>
+      {!isFeedKilled && (
+        <Button
+          title={"Toggle Feed"}
+          backgroundColor={"#5741d9"}
+          callback={toggleFeedCallback}
+        />
+      )}
+      <Button
+        title={isFeedKilled ? "Renew feed" : "Kill Feed"}
+        backgroundColor={"#b91d1d"}
+        callback={killFeedCallback}
+      />
     </Container>
   );
 };

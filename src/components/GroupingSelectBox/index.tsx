@@ -1,14 +1,16 @@
-import React, { ChangeEvent, FunctionComponent } from 'react';
+import React, { ChangeEvent, FunctionComponent } from "react";
 
 import { Container } from "./Container";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { selectGrouping, setGrouping } from "../OrderBook/orderbookSlice";
 
 interface GroupingSelectBoxProps {
-  options: number[]
+  options: number[];
 }
 
-export const GroupingSelectBox: FunctionComponent<GroupingSelectBoxProps> = ({options}) => {
+export const GroupingSelectBox: FunctionComponent<GroupingSelectBoxProps> = ({
+  options,
+}) => {
   const groupingSize: number = useAppSelector(selectGrouping);
   const dispatch = useAppDispatch();
 
@@ -18,10 +20,18 @@ export const GroupingSelectBox: FunctionComponent<GroupingSelectBoxProps> = ({op
 
   return (
     <Container>
-      <select data-testid="groupings" name="groupings" onChange={handleChange} defaultValue={groupingSize}>
-        {options.map((option, idx) => <option key={idx} value={option}>Group {option}</option>)}
+      <select
+        data-testid="groupings"
+        name="groupings"
+        onChange={handleChange}
+        defaultValue={groupingSize}
+      >
+        {options.map((option, idx) => (
+          <option key={idx} value={option}>
+            Group {option}
+          </option>
+        ))}
       </select>
-
     </Container>
   );
 };
