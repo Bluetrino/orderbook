@@ -1,6 +1,6 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "@bluetrino/orderbook",
+  "version": "1.0.0",
   "private": true,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "URL_OF_YOUR_REPOSITORY"
+    "url": "git+ssh://git@github.com/Bluetrino/orderbook.git"
   },
   "scripts": {
     "prepare": "husky install",
