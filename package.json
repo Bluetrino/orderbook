@@ -2,10 +2,21 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "URL_OF_YOUR_REPOSITORY"
+  },
   "scripts": {
     "prepare": "husky install",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:lib": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src",
@@ -34,6 +45,7 @@
     "@types/react-dom": "^18.2.4",
     "@types/redux-mock-store": "^1.0.3",
     "@types/styled-components": "^5.1.26",
+    "babel-cli": "^6.26.0",
     "babel-plugin-styled-components": "^2.1.3",
     "commitlint": "^17.6.3",
     "eslint": "^8.40.0",

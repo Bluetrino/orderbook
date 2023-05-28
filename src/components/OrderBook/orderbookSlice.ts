@@ -1,7 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
-import { ORDERBOOK_LEVELS } from "../../constants";
-import { groupByTicketSize } from "../../helpers";
+import { ORDERBOOK_LEVELS } from "../../lib/constants";
+import { groupByTicketSize } from "../../lib/helpers";
 import { RootState } from "../../store";
 
 export interface OrderbookState {

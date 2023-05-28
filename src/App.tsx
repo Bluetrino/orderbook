@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import OrderBook from "./components/OrderBook";
+import OrderBookWrapper from "./components/OrderBook";
 import { clearOrdersState } from "./components/OrderBook/orderbookSlice";
 import StatusMessage from "./components/StatusMessage";
 import { useAppDispatch } from "./hooks";
@@ -101,7 +101,7 @@ function App() {
         <>
           <GlobalStyle />
           <Header options={options[productId]} />
-          <OrderBook
+          <OrderBookWrapper
             windowWidth={windowWidth}
             productId={productId}
             isFeedKilled={isFeedKilled}
