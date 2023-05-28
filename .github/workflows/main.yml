@@ -1,17 +1,67 @@
-name: Tests
-on: [push]
+name: Semantic-Release
+
+on:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
-    name: Tests
+  build_and_release:
+    name: Build lib and Run Semantic-Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.3.0
+      - uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
         with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.3.0
+          always-auth: true
+          node-version: 18
+          registry-url: https://npm.pkg.github.com
+          scope: "@bluetrino"
+          cache: "yarn"
+
+      # Build
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GPR_TOKEN }}
+
+      - name: Generate coverage report
+        run: |
+          npm run test:coverage
+
+      - uses: codecov/codecov-action@v3
         with:
-          cmd: build # will run `yarn build` command
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: test # will run `yarn test` command
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          # file: ./coverage.xml # optional
+          # flags: unittests # optional
+          # name: codecov-umbrella # optional
+          fail_ci_if_error: false # optional (default = false)
+
+      - name: Build
+        run: yarn build:lib
+
+      # Release
+      - name: Release
+        run: npm run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
