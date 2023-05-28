@@ -21,8 +21,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "semantic-release": "semantic-release",
-    "semantic-release:dry": "semantic-release --dry-run"
+    "semantic-release": "npx semantic-release",
+    "semantic-release:dry": "npx semantic-release --dry-run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
