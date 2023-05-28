@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Bluetrino/orderbook/compare/1.0.0...1.0.1) (2023-05-28)
+
+
+### Bug Fixes
+
+* **pkg:** removed private ([72669e1](https://github.com/Bluetrino/orderbook/commit/72669e163f1806682404d73ef56e198408a7b847))
+
 # 1.0.0 (2023-05-28)
 
 
